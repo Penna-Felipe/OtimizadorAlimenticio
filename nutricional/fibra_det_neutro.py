@@ -1,12 +1,12 @@
 def calcular_fibra_det_neutro(
     materia_seca: float,
-    percentual_fdn: float = 28.0
+    percentual_fdn: float = 29.0
 ) -> float:
     """
-    Calcula a quantidade mínima de FDN na dieta.
+        Calcula a quantidade mínima de FDN na dieta.
 
-    O percentual padrão de 28% corresponde à
-    simplificação utilizada no TCC.
+        materia_seca: Consumo de matéria seca (kg/dia).
+        percentual_fdn: Percentual mínimo de FDN na MS.
     """
     if materia_seca < 0:
         raise ValueError("A matéria seca não pode ser negativa.")
