@@ -1,17 +1,25 @@
-
 """
-Módulo: materia_seca.py
+Módulo: consumo.py
 
-Responsável por calcular a ingestão estimada de matéria seca
-(DMI - Dry Matter Intake).
+Estimativa do consumo de matéria seca para vacas leiteiras
+em lactação.
+
+Referência:
+    NRC (2001).
+    Nutrient Requirements of Dairy Cattle.
+    7th Revised Edition.
+
+Modelo:
+    NRC 2001 - equação de predição de DMI para
+    vacas leiteiras em lactação.
 
 Unidades:
-- Produção de leite: kg/dia
-- Taxa de gordura: %
-- Peso vivo: kg
-- Dias em lactação: dias
-- FCM: kg/dia (leite corrigido para 4% de gordura)
-- DMI: kg/dia
+    Produção de leite: kg/dia
+    Gordura do leite: %
+    Peso corporal: kg
+    Dias em lactação: dias
+    FCM: kg/dia
+    DMI: kg/dia
 """
 
 import math
@@ -92,7 +100,7 @@ def calcular_dmi(
     return dmi
 
 
-def calcular_materia_seca(
+def calcular_consumo(
     producao_leite: float,
     taxa_gordura: float,
     peso_vivo: float,
