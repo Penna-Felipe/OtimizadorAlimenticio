@@ -33,11 +33,22 @@ from .reservas import (
     calcular_energia_reposicao,
 )
 
+from .ecc import (
+    validar_ecc,
+    calcular_ecc_escala_9,
+    calcular_proporcao_gordura,
+    calcular_proporcao_proteina,
+    calcular_peso_corporal_vazio,
+    calcular_gordura_corporal,
+    calcular_proteina_corporal,
+    calcular_peso_corporal_vazio_por_ecc,
+    calcular_variacao_tecidos_por_ecc,
+)
+
 from .manutencao import calcular_energia_manutencao
-
 from .atividade import calcular_energia_atividade
-
 from .exigencias import calcular_energia
+
 
 __all__ = [
     "calcular_nel_leite",
@@ -55,4 +66,13 @@ __all__ = [
     "calcular_energia_reservas",
     "calcular_energia_mobilizacao",
     "calcular_energia_reposicao",
+    "validar_ecc",
+    "calcular_ecc_escala_9",
+    "calcular_proporcao_gordura",
+    "calcular_proporcao_proteina",
+    "calcular_peso_corporal_vazio",
+    "calcular_gordura_corporal",
+    "calcular_proteina_corporal",
+    "calcular_peso_corporal_vazio_por_ecc",
+    "calcular_variacao_tecidos_por_ecc",
 ]
