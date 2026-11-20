@@ -31,6 +31,7 @@ from .reservas import (
     calcular_energia_reservas,
     calcular_energia_mobilizacao,
     calcular_energia_reposicao,
+    calcular_energia_diaria_reservas,
 )
 
 from .ecc import (
@@ -75,4 +76,5 @@ __all__ = [
     "calcular_proteina_corporal",
     "calcular_peso_corporal_vazio_por_ecc",
     "calcular_variacao_tecidos_por_ecc",
+    "calcular_energia_diaria_reservas",
 ]

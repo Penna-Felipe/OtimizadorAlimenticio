@@ -51,6 +51,8 @@ from .gestacao import calcular_energia_gestacao
 
 from nutricional.validacoes import validar_nao_negativo
 
+from .reservas import calcular_energia_diaria_reservas
+
 
 def calcular_energia(
     peso_vivo: float,
@@ -65,6 +67,10 @@ def calcular_energia(
     peso_bezerro_nascimento: float = 45.0,
     peso_adulto: float | None = None,
     ganho_peso_reduzido: float = 0.0,
+    ecc_atual: float | None = None,
+    ecc_desejado: float | None = None,
+    dias_variacao_ecc: int | None = None,
+    em_lactacao: bool = True,
 ) -> dict:
     """
     Consolida as exigências energéticas parciais.
@@ -202,7 +208,37 @@ def calcular_energia(
             )
         )
 
-    # 8. Retorna os componentes separadamente.
+    # 8. Calcula a contribuição energética das reservas corporais.
+    # Inicialmente, considera que não existe alteração planejada do ECC.
+    energia_reservas = 0.0
+
+    # Agrupa os parâmetros necessários para o cálculo.
+    parametros_ecc = (
+        ecc_atual,
+        ecc_desejado,
+        dias_variacao_ecc,
+    )
+
+    # Verifica se pelo menos um parâmetro foi informado.
+    if any(valor is not None for valor in parametros_ecc):
+
+        # Se algum parâmetro foi informado, todos são obrigatórios.
+        if not all(valor is not None for valor in parametros_ecc):
+            raise ValueError(
+                "Para calcular as reservas, informe "
+                "ecc_atual, ecc_desejado e dias_variacao_ecc."
+            )
+
+        # Calcula a contribuição energética diária das reservas.
+        energia_reservas = calcular_energia_diaria_reservas(
+            peso_vivo_atual=peso_vivo,
+            ecc_atual=ecc_atual,
+            ecc_desejado=ecc_desejado,
+            dias=dias_variacao_ecc,
+            em_lactacao=em_lactacao,
+        )
+
+    # 9. Retorna os componentes separadamente.
     return {
         "nel_leite_mcal_kg": nel_leite,
         "energia_manutencao_mcal_dia": energia_manutencao,
@@ -212,4 +248,5 @@ def calcular_energia(
         "energia_gestacao_mcal_dia": energia_gestacao,
         "energia_retida_crescimento_mcal_dia": energia_retida_crescimento,
         "energia_metabolizavel_crescimento_mcal_dia": energia_metabolizavel_crescimento,
+        "energia_reservas_mcal_dia": energia_reservas,
     }

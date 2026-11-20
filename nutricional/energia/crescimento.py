@@ -22,7 +22,6 @@ Observações:
 """
 
 import math
-from .constantes_nrc import EFICIENCIA_GANHO_NRC2001
 
 def calcular_peso_reduzido(
     peso_vivo: float
@@ -215,7 +214,7 @@ def calcular_energia_metabolizavel_crescimento(
 
     # Converte a energia retida em energia metabolizável.
     energia_metabolizavel = (
-        energia_retida / EFICIENCIA_GANHO_NRC2001
+        energia_retida / eficiencia_ganho
     )
 
     return energia_metabolizavel

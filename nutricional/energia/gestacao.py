@@ -11,11 +11,12 @@ Referência:
     7th Revised Edition.
 
 Equações:
+    Equações:
     ER = (0.00318 * D - 0.0352) * (CBW / 45)
 
     ME = ER / 0.14
 
-    NEL = ME * 0.64
+    NEL = ER / 0.218
 
 Unidades:
     D: dias de gestação

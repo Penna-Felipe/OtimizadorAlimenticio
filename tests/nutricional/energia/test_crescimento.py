@@ -128,3 +128,33 @@ def test_energia_retida_negativa():
             energia_retida=-4.0,
             eficiencia_ganho=0.40
         )
+
+def test_energia_metabolizavel_respeita_eficiencia():
+    """
+    Verifica se a função utiliza corretamente a
+    eficiência de ganho fornecida como parâmetro.
+
+    Cenários:
+        - Eficiência de 40%.
+        - Eficiência de 50%.
+
+    Para uma energia retida de 5 Mcal/dia,
+    os resultados esperados são:
+        - 12.5 Mcal EM/dia (40%).
+        - 10.0 Mcal EM/dia (50%).
+    """
+
+    energia_retida = 5.0
+
+    resultado_40 = calcular_energia_metabolizavel_crescimento(
+        energia_retida=energia_retida,
+        eficiencia_ganho=0.40,
+    )
+
+    resultado_50 = calcular_energia_metabolizavel_crescimento(
+        energia_retida=energia_retida,
+        eficiencia_ganho=0.50,
+    )
+
+    assert resultado_40 == pytest.approx(12.5)
+    assert resultado_50 == pytest.approx(10.0)
